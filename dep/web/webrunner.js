@@ -3,7 +3,6 @@
 	function setRunInterval(){
 		window.runInterval = 1;
 		var p = location.hash.split('=');
-		debugger;
 		if(p[0] == '#run_interval'){
 			window.runInterval = +p[1];
 		}
