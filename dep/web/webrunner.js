@@ -1,5 +1,17 @@
 (function(){
 	
+	function setRunInterval(){
+		window.runInterval = 1;
+		var p = location.hash.split('=');
+		debugger;
+		if(p[0] == '#run_interval'){
+			window.runInterval = +p[1];
+		}
+		console.log('run_interval = ', window.runInterval)
+	}
+	setRunInterval();
+
+
 	// Populated from: http://www.medcalc.be/manual/t-distribution.php
 	// 95% confidence for N - 1 = 4
 	var tDistribution = 2.776;
@@ -12,7 +24,7 @@
 	
 	// A rough estimate, in seconds, of how long it'll take each test
 	// iteration to run
-	var timePerTest = runStyle === "runs/s" ? 1 : 0.5;
+	var timePerTest = runStyle === "runs/s" ? window.runInterval : 0.5;
 	
 	// Initialize a batch of tests
 	//  name = The name of the test collection
@@ -97,7 +109,7 @@
 						
 						cur = (new Date()).getTime();
 						
-						while ( (cur - start) < 1000 ) {
+						while ( (cur - start) < 1000 * window.runInterval ) {
 							fn();
 							cur = (new Date()).getTime();
 							runs++;
